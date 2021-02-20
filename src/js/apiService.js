@@ -1,3 +1,5 @@
+import pnotifyPop from './components/pnotify'
+
 export default {
   baseUrl: 'https://pixabay.com/api/',
   apiKey: '20332919-ce65cd39cf390118f4ce6de3e',
@@ -8,9 +10,10 @@ export default {
 
     return fetch(url)
       .then(res => res.json())
-      .then(({ hits }) => {
+      .then((data) => {
+        pnotifyPop(data.total, data.hits.length * this.page);
         this.page += 1;
-        return hits;
+        return data;
       })
       .catch(error => console.log(error));
   },
