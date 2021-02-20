@@ -4,7 +4,6 @@ import imgGenApi from './js/apiService';
 
 import galleryTpl from './templates/gallery.hbs';
 import refs from './js/refs';
-import * as basicLightbox from 'basiclightbox'
 
 refs.inputRef.addEventListener('input', _.debounce(handleQuerry, 500));
 refs.inputRef.addEventListener('click', handleInputClear);
@@ -20,7 +19,6 @@ function handleQuerry(event) {
     return;
   }
   loadGallery();
-  
 }
 
 function loadGallery() {
@@ -30,7 +28,7 @@ function loadGallery() {
       top: document.documentElement.offsetHeight,
       behavior: 'smooth',
     });
-    
+
     showLoadMoreBtn();
   });
 }
@@ -42,6 +40,7 @@ function handleGalleryMarkUp(pictures) {
 
 function showLoadMoreBtn() {
   refs.loadMoerBtn.classList.remove('hidden');
+  refs.loadMoerBtn.classList.add('block');
 }
 function hideLoadMoreBtn() {
   refs.loadMoerBtn.classList.add('hidden');
@@ -49,6 +48,7 @@ function hideLoadMoreBtn() {
 
 function handleInputClear() {
   refs.inputRef.value = '';
+  hideLoadMoreBtn();
 }
 
 function clearGalleyContainer() {
